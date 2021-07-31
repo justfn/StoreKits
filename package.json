@@ -1,0 +1,24 @@
+{
+  "name": "@justfn/storekits",
+  "version": "1.0.0",
+  "description": "store sessionStorage localStorage ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justfn/StoreKits.git"
+  },
+  "keywords": [
+    "store",
+    "sessionStorage",
+    "localSotrage"
+  ],
+  "author": "fsl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justfn/StoreKits/issues"
+  },
+  "homepage": "https://github.com/justfn/StoreKits#readme"
+}

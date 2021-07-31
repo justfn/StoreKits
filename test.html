@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title> store test </title>
+  <style >
+
+    
+  </style>
+</head>
+<body>
+  
+  
+  
+</body>
+<script type="module">
+  import { 
+    Store, 
+    StoreMap, 
+    StoreSession, 
+    SessionMap, 
+    StoreLocal, 
+    LocalMap 
+  } from "./index.js";
+  import { test } from "./Store.js";
+  // test();
+  
+  // const storeKey01 = 'test/01';
+  // const store01 = Store.use(storeKey01);
+  // // 读 
+  // let val01 = store01.get(); 
+  // console.log( val01 ); 
+  // // 写 
+  // store01.set('aaa');
+  // // 读 
+  // val01 = store01.get(); 
+  // console.log( val01 );
+  // // 写  等价于 .set('bbb')  
+  // store01.value = 'bbb';
+  // // 读 等价于 .get() 
+  // val01 = store01.value; 
+  // console.log( val01 );
+  
+  // const storeKey02 = 'test/02';
+  // // 默认值, 未定义则为 null 
+  // const defaultValue = '0'; 
+  // // 格式化方法, 默认为 v=>v 
+  // const trimFn = (val)=>{ return '0'+val; }
+  // const store02 = Store.use(storeKey02, defaultValue, trimFn);
+  // let val02 = store02.value; 
+  // console.log(val02); // '00'
+  // store02.set('1');
+  // val02 = store02.value; 
+  // console.log(val02); // '01'
+  // // 获取未格式化的数据
+  // console.log(
+  //   store02.get(false) // '1'
+  // );
+  // // 获取后清除数据 
+  // // 相当于获取后手动调用 store02.clear(); 
+  // // 清除数据, 即将重置为默认值 
+  // console.log(
+  //   store02.get(true, true) // '01'
+  // );
+  // console.log( store02.get() ); // '00'  
+  
+  // const storeKey03 = 'test/03';
+  // const store03 = Store.use(storeKey03, 'aa');
+  // // 监听数据变化 
+  // store03.listen((val, preVal)=>{
+  //   console.log(val, preVal);
+  // })
+  // store03.set('bb');
+  // // 立即执行的监听 
+  // store03.listen((val, preVal)=>{
+  //   console.log(val, preVal);
+  // }, true)
+  
+  // const storeMapKey01 = 'test/01'
+  // const storeMap01 = StoreMap.use(storeMapKey01);
+  // console.log( storeMap01.get() ); // {} 
+  // console.log( storeMap01.isEmpty() ); // true
+  // storeMap01.setAttr('a', '001');
+  // console.log( storeMap01.get() ); // { a: '001'} 
+  // console.log( storeMap01.getAttr('a') ); // '001'
+  // console.log( storeMap01.isEmpty() ); // false
+  
+  
+  
+  // const storeSessionKey01 = 'test/01'
+  // const storeSession01 = StoreSession.use(storeSessionKey01, '00');
+  // storeSession01.listen((val, preVal)=>{
+  //   console.log( val, preVal );
+  // });
+  // console.log( storeSession01.get() );
+  // storeSession01.set('abc');
+  // console.log( storeSession01.get() );
+  // storeSession01.listen((val, preVal)=>{
+  //   console.log( val, preVal );
+  // }, true);
+  // console.log( storeSession01.get(true, true) );
+  // storeSession01.clear();
+  
+  
+  
+  const storeLocalKey01 = 'test/01'
+  const storeLocal01 = StoreLocal.use(
+    storeLocalKey01, 
+    '00',
+    100, // 100 秒后过期, 小于等于0 则表示永不过期 
+    v=>v
+  );
+  storeLocal01.listen((val, preVal)=>{
+    console.log( val, preVal );
+  });
+  console.log( storeLocal01.get() );
+  console.log( ' ==== ' );
+  storeLocal01.set('aaa');
+  console.log( storeLocal01.get() );
+  storeLocal01.listen((val, preVal)=>{
+    console.log( val, preVal );
+  }, true);
+  storeLocal01.set('bbb', false); // 本次设置数据, 但不刷新过期时间 
+  setTimeout(()=>{
+    console.log( storeLocal01.get() );
+  },1000*11)
+  // console.log( storeLocal01.get(true, 'session') ); // 使用 sessionStorage 接管, 数据在浏览器窗口关闭后失效 
+  // console.log( storeLocal01.get(true, 'clear') ); // 本次读取后, 数据失效 
+  // storeLocal01.clear();
+  
+  
+  
+  
+  
+  
+  
+</script>
+</html>
