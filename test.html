@@ -108,7 +108,7 @@
   const storeLocal01 = StoreLocal.use(
     storeLocalKey01, 
     '00',
-    100, // 100 秒后过期, 小于等于0 则表示永不过期 
+    10, // 100 秒后过期, 小于等于0 则表示永不过期 
     v=>v
   );
   storeLocal01.listen((val, preVal)=>{

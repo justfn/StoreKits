@@ -120,7 +120,11 @@ export default class StoreLocal {
   }
   set value(val){ return this.set(val); }
   // 清除 
-  clear = ()=>{ this.set( this._dftVal, false ); }
+  clear = ()=>{ 
+    this._value.v = this._dftVal;
+    localStorage.removeItem( this._key );
+    // this.set( this._dftVal, false ); 
+  }
   // 监听 
   listen = (listenRun, immediate=false)=>{
     if ( typeof listenRun!=='function' ) {
@@ -150,15 +154,8 @@ export default class StoreLocal {
     if ( outTime - Date.now() > 0 ) { return false; }
     
     // 过期 
-    this._preValue = this._value.v;
-    this._preTrimedValue = this._trimedValue;
-    this._value = {
-      ...this._value, 
-      isOutTime: true, 
-      v: this._dftVal,
-    }; 
-    this._trimedValue = this._trim( this._dftVal ); 
-    localStorage.setItem( this._key, JSON.stringify(this._value) );
+    this._value.isOutTime = true; 
+    this.clear();
     return true;
   }
 }
