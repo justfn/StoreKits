@@ -12,6 +12,9 @@
 
 ## 使用
 ```javascript
+// $ npm i -S @justfn/storekits  // 安装
+
+// 引入使用 
 import { 
   Store, 
   StoreMap, 
@@ -19,8 +22,7 @@ import {
   SessionMap, 
   StoreLocal, 
   LocalMap 
-} from "@justfn/StoreKits";
-
+} from "@justfn/storekits";
 ``` 
 
 
