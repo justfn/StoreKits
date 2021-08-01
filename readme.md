@@ -152,9 +152,12 @@ console.log( storeLocal01.get() );
 storeLocal01.listen((val, preVal)=>{
   console.log( val, preVal );
 }, true);
-storeLocal01.set('bbb', false); // 本次设置数据, 但不刷新过期时间 
-console.log( storeLocal01.get(true, 'session') ); // 使用 sessionStorage 接管, 数据在浏览器窗口关闭后失效 
-console.log( storeLocal01.get(true, 'clear') ); // 本次读取后, 数据失效 
+// 本次设置数据, 但不刷新过期时间 
+storeLocal01.set('bbb', false); 
+// 使用 sessionStorage 接管, 数据在浏览器窗口关闭后失效 
+console.log( storeLocal01.get(true, 'session') ); 
+// 本次读取后, 数据失效 
+console.log( storeLocal01.get(true, 'clear') ); 
 storeLocal01.clear();
 
 ```
